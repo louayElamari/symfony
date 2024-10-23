@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Libraries List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .actions a {
+            margin: 0 5px;
+        }
+
+        .add-library {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            width: 150px;
+        }
+
+        .add-library:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<a href="{{ path('app_home') }}">Home</a>
+    <h1>Libraries List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Website</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for library in list %}
+                <tr>
+                    <td>{{ library.id }}</td>
+                    <td>{{ library.name }}</td>
+                    <td><a href="{{ library.website }}" target="_blank">{{ library.website }}</a></td>
+                    <td>{{ library.dateCreation|date('Y-m-d') }}</td>
+                    <td class="actions">
+                        <a href="{{ path('app_crud_library_update', {'id': library.id}) }}">Edit</a> | 
+                        <a href="{{ path('app_crud_library_delete', {'id': library.id}) }}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No libraries found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_crud_library_new') }}" class="add-library">Add New Library</a>
+</body>
+</html>

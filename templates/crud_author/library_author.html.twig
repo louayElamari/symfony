@@ -1,0 +1,87 @@
+
+
+
+<html>
+<head>
+    <title>List of Authors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #ffffff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #000000;
+        }
+
+        th {
+            background-color: #000000;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        tr:hover {
+            background-color: #d3d3d3;
+        }
+    </style>
+
+
+
+
+
+
+
+    
+</head>
+<body>
+    <h1>List of Authors</h1>
+    {% set total_books = 0 %}
+    
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>Number of Books</th>
+            <th>ADDRESS</th>
+        </tr>
+        
+       {# templates/crud_author/list.html.twig #}
+
+<h1>Authors by Library</h1>
+
+{% if list is not empty %}
+    <ul>
+        {% for author in list %}
+            <li>{{ author.name }} (Library: {{ author.library.name }})</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No authors found for this library.</p>
+{% endif %}
+    </table>
+
+    
+</body>
+</html>

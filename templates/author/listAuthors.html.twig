@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title><centre> list of Authors</centre></title>
+    </head>
+
+    <body>
+        {% set total_books =0%}
+        
+
+        <table>
+            <tr>
+                <th> Name :</th>
+                <th> Image : </th>  
+                <th>Nbrs Books : </th>
+            </tr>
+
+            <tr {% for author in authors %}>
+                {% set total_books=total_books + author.nbrBooks %}
+                <td> {{ author.authorName }} </td>
+                <td> <img src=" {{ asset(author.picture) }} "></img></td> 
+                <td> {{ author.nbrBooks }}</td>
+            </tr {% endfor %}>
+        </table>
+
+        <h1> number of authers : {{ authors | length}} </h1>
+        <h1> total number of books : {{ total_books }} </h1>
+       
+    </body>
+</html>
